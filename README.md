@@ -1,7 +1,7 @@
 	Lattice Buildpacks and TCP Router Demo		
 -     DEMO		
 	It's nice if you can choose an AWS Region that hasn’t got any other VMs in it, so that there aren’t a lot of terminated/running VMs hanging around the EC2 console
--     		
+
 -     PREP		
 - [ ] D/L and install a Lattice bundle		
 - [ ] Prep a lattice.aws.tf (w/ credentials) & a sanitized lattice.aws.tf to show (w/o credentials)		
@@ -13,8 +13,7 @@
 	- [ ] cf create-service p-mysql 100mb mysql-monitor-db		
 		p-mysql is for PWS-E customers only, so this only works for Pivotal employees who've requested access
 - [ ] Browser windows: Lattice.cf, run.pivotal.io, EC2 console (optional)		
-- [ ] 		
--     		
+
 -     PWS DEMO		
 	You're welcome to try these things out, you'll need to sign up for a free 60 day trial (no CC required)
 - [ ] cd ~/workspace/mysql-monitor.node		
@@ -29,7 +28,7 @@ Highlight these lines of output: urls, stack, buildpack
 	Make note of the fact that it has DB credentials auto-configured
 - [ ] http://run.pivotal.io/		
 	Optional: Show that all of these things are available using the Web UI
--     		
+
 -     INSTALL LATTICE	(Switch to TF terminal)	
 - [ ] cd ~/bin/lattice-bundle-v0.4.0-osx		
 - [ ] cat /tmp/lattice-sanitized.aws.tf		
@@ -43,8 +42,8 @@ Highlight these lines of output: urls, stack, buildpack
 - [ ] ltc target		
 - [ ] ltc create mariadb mariadb:10.0.21 --run-as-root --monitor-port 3306 --env MYSQL_ROOT_PASSWORD=passw0rd --env MYSQL_USER=marco --env MYSQL_PASSWORD=marco --env MYSQL_DATABASE=latticeDB --timeout 6m --tcp-routes 3306:3306	(Go back to presentation)	
 	This will take a long time to d/l on a new cluster. There will be quite a lot of error output as MariaDB comes up: since this isn't a web app, we're specifying a monitor port to monitor the health of the service. It takes a while for MariaDB to start listening on that port.
--     		
-- [ ] LATTICE DEMO		
+
+- LATTICE DEMO		
 - [ ] mysql -umarco -p -h 192.168.11.11 latticeDB		
 	Note using IP address of the brain, not a hostname .xip.io b/c this isn't an HTTP route.
 	- [ ] create table SampleData (K VARCHAR(20), V VARCHAR(20));	(exit mysql)	
@@ -74,7 +73,7 @@ Highlight these lines of output: urls, stack, buildpack
 - [ ] ltc list	(Switch to vagrant terminal)	
 - [ ] vagrant destroy -f	(Switch to TF terminal)	
 - [ ] tf destroy -force		
--     		
+
 -     BONUS MATERIAL		
 - [ ] cf curl "/v2/apps/`cf app mysql-monitor --guid`/droplet/download" --output MYSQL-MON.tgz		
 - [ ] ltc import-droplet MYSQL-MON MYSQL-MON.tgz MYSQL-MON-metadata.json		
